@@ -10,9 +10,11 @@ namespace CLRAgent
     {
         private Job _job;
         private ManualResetEvent _doneEvent;
+        private AgentDb _db;
 
         public AgentWorker(Job job, ManualResetEvent doneEvent)
         {
+            this._db = new AgentDb();
             this._job = job;
             this._doneEvent = doneEvent;
         }
@@ -21,24 +23,46 @@ namespace CLRAgent
         public void RunJobCallback(Object threadContext)
         {
             //Run job
-            JobResult result = RunJob(_job);
-            //Log result
+            _job.CurrentExecutionStatus = ExecutionStatus.Starting;
+            JobResult result = RunJob(_job);            
+            _db.LogJob(result);
+            _db.SetJobStatus(_job.CurrentExecutionStatus, _job.Uid);
             _doneEvent.Set();            
         }
 
         private JobResult RunJob(Job job)
-        {
-            foreach(JobStep step in job.Steps)
+        {            
+            int startJobStep = 1;
+            int currentJobStep = startJobStep;
+            job.CurrentExecutionStatus = ExecutionStatus.Running;
+
+            while(currentJobStep > 0)
             {
-                RunJobStep(step);
+                JobStep step = job.Steps.Find(x => x.Id == currentJobStep);                
+                JobStepResult result = RunJobStep(step);
+                _db.LogJobStep(result);
+
+                if (result.IsError)
+                {
+                    if (step.StepIdOnError > 0)
+                        currentJobStep = step.StepIdOnError;
+                    job.CurrentExecutionStatus = ExecutionStatus.Error;
+                }
+                else
+                {
+                    currentJobStep = step.NextStepId;
+                }
             }
+
+            job.CurrentExecutionStatus = ExecutionStatus.Finished;            
             //Log result
             return null;
         }
 
         private JobStepResult RunJobStep(JobStep step)
-        {
-            //Run job step            
+        {            
+            //Run job step          
+            //Change job step status
             return null;
         }
     }

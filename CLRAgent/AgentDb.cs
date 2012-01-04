@@ -26,6 +26,15 @@ namespace CLRAgent
         {
         }
 
+        public void SetJobStatus(ExecutionStatus status, string jobUid)
+        {
+        }
+
+        public void SetJobStepStatus(ExecutionStatus status, string jobUid, int stepId)
+        {
+        }
+
+
         public void LogJob(JobResult result)
         {
         }

@@ -24,7 +24,7 @@ namespace CLRAgent
         List<Job> _jobs;
 
         //Constructor
-        public Agent(List<Job> jobs, ManualResetEvent doneEvent)
+        public Agent(List<Job> jobs)
         {
             if (jobs != null)
             {

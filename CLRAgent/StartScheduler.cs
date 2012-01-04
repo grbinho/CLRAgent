@@ -7,6 +7,7 @@ using System.Threading;
 using System.Timers;
 using CLRAgent.Library;
 using CLRAgent;
+using System.Collections.Generic;
 
 
 public partial class StoredProcedures
@@ -25,6 +26,13 @@ public partial class StoredProcedures
     //Check for pending agent jobs
     static void scheduleTimer_Elapsed(object sender, ElapsedEventArgs e)
     {
-        throw new NotImplementedException();
+        AgentDb db = new AgentDb();
+        List<Job> jobs = db.CheckSchedule();
+        if (jobs.Count > 0)
+        {            
+            Agent agentInstance = new Agent(jobs);
+            Thread t = new Thread(agentInstance.RunJobsAsync);
+            t.Start();
+        }
     }
 };
