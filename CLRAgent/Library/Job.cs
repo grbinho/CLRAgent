@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace CLRAgent.Library
@@ -18,5 +17,8 @@ namespace CLRAgent.Library
         public ExecutionStatus LastExecutionStatus { get; set; }
         public ExecutionStatus CurrentExecutionStatus { get; set; }
         public List<JobStep> Steps { get; set; }
+        public List<Operator> Operators { get; set; }
+        public Boolean SendMailOnError { get; set; }
+        public Boolean SendMailOnCompletion { get; set; }
     }
 }

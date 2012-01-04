@@ -12,8 +12,11 @@
     <OutputType>Library</OutputType>
     <NoStandardLibraries>false</NoStandardLibraries>
     <AssemblyName>CLRAgent</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <SGenUseProxyTypes>false</SGenUseProxyTypes>
+    <ConnectionString>
+    </ConnectionString>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -46,11 +49,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Agent.cs" />
+    <Compile Include="AgentDb.cs" />
+    <Compile Include="AgentWorker.cs" />
     <Compile Include="Library\Job.cs" />
     <Compile Include="Library\JobResult.cs" />
     <Compile Include="Library\ExecutionStatus.cs" />
     <Compile Include="Library\JobStep.cs" />
     <Compile Include="Library\JobStepResult.cs" />
+    <Compile Include="Library\Operator.cs" />
     <Compile Include="Library\ResultBase.cs" />
     <Compile Include="Library\Schedule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

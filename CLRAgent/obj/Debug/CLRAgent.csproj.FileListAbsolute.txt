@@ -1,0 +1,5 @@
+C:\Users\ivan.grbavac\Documents\Visual Studio 2010\Projects\CLRAgent\CLRAgent\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\ivan.grbavac\Documents\Visual Studio 2010\Projects\CLRAgent\CLRAgent\bin\Debug\CLRAgent.dll
+C:\Users\ivan.grbavac\Documents\Visual Studio 2010\Projects\CLRAgent\CLRAgent\bin\Debug\CLRAgent.pdb
+C:\Users\ivan.grbavac\Documents\Visual Studio 2010\Projects\CLRAgent\CLRAgent\obj\Debug\CLRAgent.dll
+C:\Users\ivan.grbavac\Documents\Visual Studio 2010\Projects\CLRAgent\CLRAgent\obj\Debug\CLRAgent.pdb
