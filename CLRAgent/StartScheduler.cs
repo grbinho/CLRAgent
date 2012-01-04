@@ -19,22 +19,7 @@ public partial class StoredProcedures
         scheduleTimer.Elapsed += new ElapsedEventHandler(scheduleTimer_Elapsed);        
         scheduleTimer.AutoReset = true;
         scheduleTimer.Start();
-        GC.KeepAlive(scheduleTimer);
-        //Start scheduler with wait set to waitTimeMs
-            //Check the view for jobs ready for execution
-        //Execute those jobs in parallel
-        //SqlPipe pipe = SqlContext.Pipe;
-        //SqlConnection connection = new SqlConnection("context connection=true");
-        //String connectionString = connection.ConnectionString;
-        //pipe.Send("Test pipe result");
-        //pipe.Send(connectionString);
-        //testconnectionclass t = new testconnectionclass();
-        //t.openconnection();     
-        //agent objects are defined in databaseName
-
-        while(true)
-        {                       
-        }
+        GC.KeepAlive(scheduleTimer);                
     }
 
     //Check for pending agent jobs
