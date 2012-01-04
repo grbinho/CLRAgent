@@ -9,12 +9,45 @@ namespace CLRAgent
 {
     class AgentDb
     {
-        SqlPipe pipe = SqlContext.Pipe;
-        SqlConnection connection = new SqlConnection("context connection=true");
+        private SqlPipe _pipe = SqlContext.Pipe;
+        private SqlConnection _connection = new SqlConnection("context connection=true");
+
+        #region SQL command wrappers
+        private SqlCommand GetSQLCommandObject(string database)
+        {
+            _connection.Open();
+            _connection.ChangeDatabase(database);
+            return _connection.CreateCommand();
+        }
+
+        private void ExecuteNonQuery(string command, string database)
+        {
+            SqlCommand cmd = GetSQLCommandObject(database);
+            cmd.CommandText = command;
+            cmd.ExecuteNonQuery();
+            cmd.Connection.Close();
+        }
+
+        private void ExecuteScalar(string command, string database)
+        {
+            SqlCommand cmd = GetSQLCommandObject(database);
+            cmd.CommandText = command;
+            cmd.ExecuteScalar();
+            cmd.Connection.Close();
+        }
+
+        private SqlDataReader ExecuteQuery(string command, string database, SqlParameter[] parameters)
+        {
+            SqlCommand cmd = GetSQLCommandObject(database);
+            cmd.CommandText = command;
+            cmd.Parameters.AddRange(parameters);
+            return cmd.ExecuteReader();            
+        }
+        #endregion
 
         public void WriteStatusMessage(string message)
         {
-            pipe.Send(message);
+            _pipe.Send(message);
         }
 
         public List<Job> CheckSchedule()
@@ -34,7 +67,6 @@ namespace CLRAgent
         {
         }
 
-
         public void LogJob(JobResult result)
         {
         }
@@ -47,7 +79,6 @@ namespace CLRAgent
         private List<JobStep> GetJobSteps(string jobUid)
         {
             return null;
-        }
-        
+        }        
     }
 }

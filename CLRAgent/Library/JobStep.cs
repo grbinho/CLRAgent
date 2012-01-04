@@ -12,6 +12,7 @@ namespace CLRAgent.Library
         public String JobUid { get; set; }        
         public int Id { get; set; }
         public String Name { get; set; }
+        public String DatabaseName { get; set; }
         public String Description { get; set; }
         public int NextStepId { get; set; }
         public Boolean StopOnError { get; set; }
