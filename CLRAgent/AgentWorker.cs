@@ -31,9 +31,8 @@ namespace CLRAgent
         }
 
         private JobResult RunJob(Job job)
-        {            
-            int startJobStep = 1;
-            int currentJobStep = startJobStep;
+        {                        
+            int currentJobStep = 1;
             job.CurrentExecutionStatus = ExecutionStatus.Running;
 
             while(currentJobStep > 0)
